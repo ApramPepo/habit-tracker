@@ -16,6 +16,10 @@ section {
     margin: 20px 0;
 }
 
+#datetime {
+    text-align: center;
+}
+
 form {
     display: flex;
     flex-direction: column;
