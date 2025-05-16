@@ -1,34 +1,33 @@
 export class Habit {
-    constructor(name, goal){
+    constructor(name, goal) {
         this.id = Date.now();
         this.name = name;
-        this.goal = goal;
-        this.log = {};
+        this.goal = parseInt(goal);
+        this.logs = {};
     }
 
-    logging(date, progress) {
-        this.log[date] = parseInt(progress);
+    logProgress(date, progress) {
+        this.logs[date] = parseInt(progress);
     }
 
     getProgress(date) {
-        return this.log[date] || 0;
+        return this.logs[date] || 0;
     }
 
-    isComplete(date) {
+    isCompleted(date) {
         return this.getProgress(date) >= this.goal;
     }
 
-    getSteak() {
-        let Streak = 0;
+    getStreak() {
+        let streak = 0;
         let today = new Date();
         let dateStr = today.toLocaleDateString();
-
-        while (this.isComplete(dateStr)) {
-            Streak++;
-            today.setDate(today.getDate() - 1)
+        while (this.isCompleted(dateStr)) {
+            streak++;
+            today.setDate(today.getDate() - 1);
             dateStr = today.toLocaleDateString();
         }
-        return Streak;
+        return streak;
     }
 
     getDetails(date) {
@@ -40,20 +39,21 @@ export class Habit {
             id: this.id,
             name: this.name,
             goal: this.goal,
-            log: this.log || `habit`,
+            logs: this.logs,
+            type: this.type || 'habit',
         };
     }
 
     static fromJSON(json) {
-        const habitClass = {
+        const habitClasses = {
             habit: Habit,
-            countable: CountableHabit,
+            counted: CountableHabit,
             timed: TimedHabit,
         };
-        const HabitClass = habitClass[json.type] || Habit;
+        const HabitClass = habitClasses[json.type] || Habit;
         const habit = new HabitClass(json.name, json.goal);
         habit.id = json.id;
-        habit.log = json.logs
+        habit.logs = json.logs || {};
         return habit;
     }
 }

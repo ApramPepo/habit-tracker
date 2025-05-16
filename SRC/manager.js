@@ -15,13 +15,13 @@ export class HabitManager {
         return this.habits;
     }
 
-    getCompRate(date) {
+    getCompletionRate(date) {
         const completed = this.habits.filter(h => h.isCompleted(date)).length;
         return this.habits.length ? (completed / this.habits.length * 100).toFixed(2) : 0;
     }
 
     getTotalStreaks() {
-        return this.habits.reduce((sum, h) => sum + h.getStreaks(), 0);
+        return this.habits.reduce((sum, h) => sum + h.getStreak(), 0);
     }
 
     saveToStorage() {
