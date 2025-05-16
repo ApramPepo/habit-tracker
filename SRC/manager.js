@@ -31,7 +31,7 @@ export class HabitManager {
     loadFromStorage() {
         const stored = localStorage.getItem('habits');
         if (stored) {
-            this.habits = JSON.parse(stored).map(h => new Habit.fromJSON(json));
+            this.habits = JSON.parse(stored).map(json => Habit.fromJSON(json));
         }
     }
 }

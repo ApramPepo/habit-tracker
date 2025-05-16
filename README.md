@@ -18,7 +18,7 @@ A tracker project for "Habits" to practice several key programming principles su
 </tr>
 <tr>
 <td>Add LocalStorage</td>
-<td>⚒️</td>
+<td>✅</td>
 </tr>
 <tr>
 <td>Desktop Responsive Design</td>
@@ -26,10 +26,10 @@ A tracker project for "Habits" to practice several key programming principles su
 </tr>
 <tr>
 <td>Mobile Responsive Design</td>
-<td>❌</td>
+<td>⚒️</td>
 </tr>
 <tr>
 <td>Add a date picker</td>
-<td>⚒️</td>
+<td>✅</td>
 </tr>
 </table>

@@ -2,7 +2,7 @@ import {Habit, CountableHabit, TimedHabit } from './habit.js'
 import { HabitManager } from './manager.js'
 
 const Factory = {
-    countable: (name, goal) => new CountableHabit(name, goal),
+    counted : (name, goal) => new CountableHabit(name, goal),
     timed: (name, goal) => new TimedHabit(name, goal),
 };
 
@@ -34,10 +34,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     habitList.addEventListener('click', (e) => {
         if (e.target.classList.contains('log-progress')) {
-            const habitID = parseInt(e.target.dataset.habitID);
-            const habit = manager.getHabits().find(h => h.id === habitID);
+            const habitId = parseInt(e.target.dataset.habitId);
+            const habit = manager.getHabits().find(h => h.id === habitId);
             const progress = parseInt(prompt(`Enter progress for ${habit.name}`));
-            if (!isNan(progress) && progress > 0) {
+            if (!isNaN(progress) && progress > 0) {
                 habit.logProgress(datePick.value, progress);
                 manager.saveToStorage();
                 updateHabits(datePick.value);
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
             li.className = `item ${habit.isCompleted(dateStr) ? 'completed' : ''}`;
             li.innerText = `
                 ${habit.getDetails(dateStr)}
-                <button class="log-progress" data habit-id="${habit.id}">Log Progress</button>
+                <button class="log-progress" data-habit-id="${habit.id}">Log Progress</button>
             `;
             habitList.appendChild(li);
         });
