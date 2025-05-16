@@ -52,3 +52,19 @@ button:hover {
 #stats {
     padding: 1.5ch;
 }
+
+.habit-item {
+    display: flex;
+    align-items: center;
+    gap: 1.5ch;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.habit-item.completed {
+    background-color: #e0ffe0;
+}
+
+.datetime {
+    margin: 10px 0;
+}
